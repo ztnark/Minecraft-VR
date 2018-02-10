@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Minecraft</title>
+    <meta name="description" content="Simple Minecraft">
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-03-20" content="AjQB8Zr/9RPv0Qq5kND+VntlHBic9lHdvm+S6wLZM7xdCkf3RlcA43ZpKiERHEhBby+bPteXU9XbqQyLKewPaAwAAABdeyJvcmlnaW4iOiJodHRwczovL2J1dHRlcmN1cC10b3duLmdsaXRjaC5tZTo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjFNNjIiLCJleHBpcnkiOjE1MjE1MjA5OTZ9">
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/intersection-spawn.js"></script>
+    <script>
+      AFRAME.registerComponent("daydream-listener", {
+        init: function() {
+          this.el.addEventListener('controllerconnected', function (evt) {
+            var cursor = document.getElementById('cursor')
+            cursor.parentNode.removeChild(cursor)
+          });
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity daydream-controls laser-controls="hand: right" intersection-spawn="event: click; mixin: voxel" daydream-listener></a-entity>
+      <a-camera>
+        <a-cursor id="cursor" intersection-spawn="event: click; mixin: voxel"></a-cursor>
+      </a-camera>
+      <a-mixin id="voxel"
+       geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5"
+       material="src:https://storage.googleapis.com/gltfs/JehkobasFantasy_4/assets/minecraft/textures/blocks/stone.png;"
+       random-color
+       snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"></a-mixin>
+      <a-sky color="blue"></a-sky>
+      <a-plane material="src:https://i.imgur.com/jwZbOjR.png; repeat: 100 100" rotation="-90 0 0" width="500" height="500"></a-plane>
+    </a-scene>
+  </body>
+</html>
